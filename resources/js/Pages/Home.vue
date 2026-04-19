@@ -1,3 +1,8 @@
+<script setup></script>
+
 <template>
-    <div class="p-4">Home</div>
+    <Head title=" | Home" />
+    <div class="text-3xl">
+        <h1>Home</h1>
+    </div>
 </template>
