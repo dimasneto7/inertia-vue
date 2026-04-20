@@ -4,29 +4,23 @@ import TextInput from "../Components/TextInput.vue";
 import { Text } from "vue";
 
 const form = useForm({
-    name: null,
     email: null,
     password: null,
-    password_confirmation: null,
+    remember: null,
 });
+
 const submit = () => {
-    form.post(route("register"), {
-        onError: () => form.reset("password", "password_confirmation"),
+    form.post(route("login"), {
+        onError: () => form.reset("password", "remember"),
     });
 };
 </script>
 
 <template>
-    <Head title=" | Cadastrar" />
-    <h1 class="title">Registre uma nova conta</h1>
+    <Head title=" | Entrar" />
+    <h1 class="title">Entrar na sua conta</h1>
     <div class="w-2/4 mx-auto">
         <form @submit.prevent="submit">
-            <TextInput
-                name="Nome"
-                v-model="form.name"
-                :message="form.errors.name"
-            />
-
             <TextInput
                 name="Email"
                 type="email"
@@ -40,18 +34,29 @@ const submit = () => {
                 v-model="form.password"
                 :message="form.errors.password"
             />
-            <TextInput
-                name="Confirmação de senha"
-                type="password"
-                v-model="form.password_confirmation"
-            />
+
+            <div class="mb-4">
+                <label for="remember">
+                    <input
+                        type="checkbox"
+                        name="remember"
+                        v-model="form.remember"
+                        id="remember"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                    />
+                    Lembrar de mim
+                </label>
+            </div>
+
             <div>
                 <p class="text-slate-600 mb-2">
-                    Já tem uma conta?
-                    <a :href="route('login')" class="text-link">Faça login</a>
+                    Ainda não tem uma conta?
+                    <a :href="route('register')" class="text-link"
+                        >Crie uma conta</a
+                    >
                 </p>
                 <button class="primary-btn" :disabled="form.processing">
-                    Registrar
+                    Entrar
                 </button>
             </div>
         </form>
