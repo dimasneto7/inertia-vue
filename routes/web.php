@@ -1,14 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::inertia('/', 'Home')->name('home');
 
-// Route::get('/about', function () {
-//     return inertia('About', ['user' => 'Dimas']);
-// });
+Route::inertia('/register', 'Auth/Register')->name('register');
 
-Route::inertia('/about', 'About', ['user' => 'Dimas']);
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');

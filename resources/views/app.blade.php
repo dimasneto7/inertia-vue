@@ -5,6 +5,7 @@
         @vite('resources/js/app.js')
         @vite('resources/css/app.css')
         <x-inertia::head />
+        @routes
     </head>
     <body>
         <x-inertia::app />
