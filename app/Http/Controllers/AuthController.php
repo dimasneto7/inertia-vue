@@ -33,7 +33,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // redirect
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('greet', 'Bem-vindo, ' . $user->name . '!');
     }
 
     public function login(Request $request) {
